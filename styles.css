@@ -1,0 +1,93 @@
+body {
+    font-family: Open Sans, Arial, sans-serif;
+    background-color: #11385E;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .black-banner {
+    background-color: #000000;
+  }
+  
+  .banner {
+    padding: 10px 0;
+  }
+  
+  .icon-link {
+    display: inline-block;
+    margin-right: 10px;
+    margin-top: 0px;
+    vertical-align: middle;
+    height: 50px;
+  }
+  
+  .icon-link img {
+    max-height: 70px;
+    height: auto;
+  }
+  
+  .understood-text {
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .button-group .btn {
+    color: #ffffff;
+  }
+  
+  .button-group .btn-transparent {
+    background-color: transparent;
+    border: none;
+  }
+  
+  .text-center {
+    text-align: center; /* Center-align text */
+  }
+  
+  .video-section {
+    padding: 20px;
+    background-color: #ffffff;
+  }
+  
+  .video-section h2 {
+    margin-bottom: 30px;
+  }
+  
+  .bold-white-text {
+    color: #ffffff;
+    font-weight: bold;
+  }
+  
+  .btn-pill-custom {
+    display: inline-block;
+    border-radius: 50px;
+    overflow: hidden;
+    background-color: #ffffff;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .ai-researcher-text {
+    color: #C8017D;
+  }
+  
+  .btn-pill-custom .button-img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .black-banner .container {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .container-below-nav {
+    margin-top: 20px; /* Adjust the margin to shift everything down */
+  }
+  
+  /* Set the width of the container to 70% */
+  .container {
+    max-width: 70%;
+    margin: 0 auto;
+  }
+  
