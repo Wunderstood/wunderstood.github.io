@@ -36,7 +36,7 @@ function displayProfileData(userProfile) {
       <p>Username: ${userProfile.nickname}</p>
     `;
   } else {
-    profileContainer.innerHTML = '<p>Failed to fetch user profile. Please log in. I see: </p>'+ userProfile;
+    profileContainer.innerHTML = '<p>Failed to fetch user profile. Please log in. I can see: </p>'+ userProfile;
   }
 }
 
