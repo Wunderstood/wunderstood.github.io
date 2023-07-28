@@ -51,11 +51,6 @@
   margin: -80px 0 0 121px;
 }
 
-.u-section-1 .u-btn-1 {
-  background-image: none;
-  padding: 0;
-}
-
 .u-section-1 .u-container-layout-3 {
   padding: 0 20px;
 }
@@ -80,6 +75,11 @@
 
 .u-section-1 .u-text-5 {
   margin: -80px 0 0 121px;
+}
+
+.u-section-1 .u-btn-1 {
+  background-image: none;
+  padding: 0;
 }
 
 .u-section-1 .u-container-layout-5 {
