@@ -22,14 +22,17 @@ async function fetchUserProfile() {
     }
 }
 
+
 // Function to update the navbar based on user's login status
 async function updateNavbar() {
+    console.log("updating nav bar...");
     const userProfile = await fetchUserProfile();
+    console.log("found user profile" + userProfile);
     const loginLink = document.querySelector('a[href="https://auth.wunderstood.com/login"]');
     
     if (userProfile) {
-        loginLink.textContent = 'Logout';
-        loginLink.href = 'https://auth.wunderstood.com/logout';
+        loginLink.textContent = 'Dashboard';
+        loginLink.href = 'https://auth.wunderstood.com/dashboard';
     } else {
         loginLink.textContent = 'Login';
         loginLink.href = 'https://auth.wunderstood.com/login';
