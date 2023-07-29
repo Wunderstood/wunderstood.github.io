@@ -1,17 +1,40 @@
-// session_nav.js
+// Function to fetch the user's profile data from the server
+async function fetchUserProfile() {
+    try {
+        const response = await fetch('https://auth.wunderstood.com/profile', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include', // Include credentials in the request
+        });
 
-// Fetch the 'user' object from the session
-// Note: The way to fetch the session data may vary depending on how your session is being managed
-// The following is just an example and should be replaced by your actual session fetching method
-const user = sessionStorage.getItem('user');
+        if (!response.ok) {
+            throw new Error('Failed to fetch user profile');
+        }
 
-// Check if user object is null or not
-if (user) {
-  // user is logged in
-  // Change 'Login' to 'Dashboard'
-  const loginLink = document.querySelector('a[href="https://auth.wunderstood.com/login"]');
-  if (loginLink) {
-    loginLink.href = "https://www.wunderstood.com/Dashboard"; // replace with your actual dashboard link
-    loginLink.textContent = "Dashboard";
-  }
+        const userProfile = await response.json();
+
+        return userProfile;
+    } catch (error) {
+        console.error('Error fetching user profile:', error);
+        return null;
+    }
 }
+
+// Function to update the navbar based on user's login status
+async function updateNavbar() {
+    const userProfile = await fetchUserProfile();
+    const loginLink = document.querySelector('a[href="https://auth.wunderstood.com/login"]');
+    
+    if (userProfile) {
+        loginLink.textContent = 'Logout';
+        loginLink.href = 'https://auth.wunderstood.com/logout';
+    } else {
+        loginLink.textContent = 'Login';
+        loginLink.href = 'https://auth.wunderstood.com/login';
+    }
+}
+
+// Update the navbar when the page has loaded
+window.addEventListener('load', updateNavbar);
