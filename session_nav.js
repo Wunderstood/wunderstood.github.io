@@ -1,5 +1,5 @@
-// Function to fetch the user's profile data from the server
-async function fetchUserProfile() {
+// Function to fetch the user's session data from the server
+async function fetchUserSession() {
     try {
         const response = await fetch('https://auth.wunderstood.com/profile', {
             method: 'GET',
@@ -10,27 +10,26 @@ async function fetchUserProfile() {
         });
 
         if (!response.ok) {
-            throw new Error('Failed to fetch user profile');
+            throw new Error('Failed to fetch user session');
         }
 
-        const userProfile = await response.json();
+        const userSession = await response.json();
 
-        return userProfile;
+        return userSession;
     } catch (error) {
-        console.error('Error fetching user profile:', error);
+        console.error('Error fetching user session:', error);
         return null;
     }
 }
 
-
 // Function to update the navbar based on user's login status
 async function updateNavbar() {
     console.log("updating nav bar...");
-    const userProfile = await fetchUserProfile();
-    console.log("found user profile" + userProfile);
+    const userSession = await fetchUserSession();
+    console.log("found user session" + userSession);
     const loginLink = document.querySelector('a[href="https://auth.wunderstood.com/login"]');
     
-    if (userProfile) {
+    if (userSession && userSession.sessionId) {
         loginLink.textContent = 'Dashboard';
         loginLink.href = 'https://wunderstood.com/Dashboard';
     } else {
