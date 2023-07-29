@@ -32,7 +32,7 @@ async function updateNavbar() {
     
     if (userProfile) {
         loginLink.textContent = 'Dashboard';
-        loginLink.href = 'https://auth.wunderstood.com/dashboard';
+        loginLink.href = 'https://wunderstood.com/Dashboard';
     } else {
         loginLink.textContent = 'Login';
         loginLink.href = 'https://auth.wunderstood.com/login';
