@@ -49,8 +49,7 @@ async function checkout(event) {
       },
       body: JSON.stringify({
         productId: productId, // Use the provided product ID
-        sessionId: userSession.sessionId, // The session ID fetched from the server
-        accessToken: accessToken
+        sessionId: userSession.sessionId // The session ID fetched from the server
       })
     })
     .then(function(response) {
