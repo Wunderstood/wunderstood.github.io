@@ -1,6 +1,11 @@
-var stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx'); // Your Stripe publishable key
+// Your Stripe publishable key
+var stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx'); 
 
-function checkout(productId) {
+function checkout(event) {
+  event.preventDefault();
+  
+  var productId = event.target.dataset.productId;
+
   // On button click, make a request to your server to create a Checkout Session
   fetch('https://payments.wunderstood.com/create-checkout-session', {
     method: 'POST',
@@ -31,3 +36,12 @@ function checkout(productId) {
 }
 
 export default checkout;
+
+// Ensure the DOM is fully loaded before attaching event listeners
+window.onload = function() {
+  var checkoutLink = document.getElementById('checkoutLink');
+
+  if(checkoutLink) {
+    checkoutLink.addEventListener('click', checkout);
+  }
+};
