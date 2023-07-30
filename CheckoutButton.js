@@ -8,6 +8,7 @@ function checkout(event) {
   // On button click, make a request to your server to create a Checkout Session
   fetch('https://payments.wunderstood.com/create-checkout-session', {
     method: 'POST',
+    credentials: 'include',
     headers: {
       'Content-Type': 'application/json'
     },
