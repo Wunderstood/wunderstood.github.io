@@ -1,7 +1,9 @@
 var stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx'); // Your Stripe publishable key
 
 function checkout(event) {
-    console.log('checkout function called');
+  console.log('checkout function called');
+  console.log('Product ID:', productId);
+  console.log('Response from server:', sessionStorage.getItem('sessionID') );
   event.preventDefault();
   var productId = event.target.dataset.productId; 
   console.log('got productID');
