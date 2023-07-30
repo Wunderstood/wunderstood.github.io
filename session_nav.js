@@ -26,7 +26,8 @@ async function fetchUserSession() {
 async function updateNavbar() {
     console.log("updating nav bar...");
     const userSession = await fetchUserSession();
-    console.log("found user session" + userSession);
+    console.log("found user session" + userSession.sessionId);
+    console.log('Response from local session Storage:', sessionStorage.getItem('sessionID') );
     const loginLink = document.querySelector('a[href="https://auth.wunderstood.com/login"]');
     
     if (userSession && userSession.sessionId) {
