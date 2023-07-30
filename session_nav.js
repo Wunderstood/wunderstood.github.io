@@ -14,7 +14,7 @@ async function fetchUserSession() {
         }
 
         const userSession = await response.json();
-
+        console.log('User session:', userSession);
         return userSession;
     } catch (error) {
         console.error('Error fetching user session:', error);
