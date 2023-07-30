@@ -1,3 +1,6 @@
+// Stripe instance
+var stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx'); // Your Stripe publishable key
+
 // Function to fetch the user's session data from the server
 async function fetchUserSession() {
     try {
@@ -21,6 +24,7 @@ async function fetchUserSession() {
         return null;
     }
 }
+
 async function checkout(event) {
     event.preventDefault();
     
@@ -64,4 +68,8 @@ async function checkout(event) {
     .catch(function(error) {
       console.error('Error:', error);
     });
-  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelector('#checkout-btn').addEventListener('click', checkout);
+});
