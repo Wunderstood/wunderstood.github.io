@@ -1,11 +1,10 @@
-// Your Stripe publishable key
-var stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx'); 
+var stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx'); // Your Stripe publishable key
 
 function checkout(event) {
+    console.log('checkout function called');
   event.preventDefault();
-  
-  var productId = event.target.dataset.productId;
-
+  var productId = event.target.dataset.productId; 
+  console.log('got productID');
   // On button click, make a request to your server to create a Checkout Session
   fetch('https://payments.wunderstood.com/create-checkout-session', {
     method: 'POST',
@@ -34,14 +33,9 @@ function checkout(event) {
     console.error('Error:', error);
   });
 }
-
-export default checkout;
-
-// Ensure the DOM is fully loaded before attaching event listeners
-window.onload = function() {
-  var checkoutLink = document.getElementById('checkoutLink');
-
-  if(checkoutLink) {
-    checkoutLink.addEventListener('click', checkout);
-  }
-};
+function testclick(event){
+    console.log("you clicked");
+}
+document.addEventListener('DOMContentLoaded', function() {
+document.querySelector('#checkout-btn').addEventListener('click', checkout);
+});
