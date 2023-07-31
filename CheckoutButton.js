@@ -16,6 +16,24 @@ function getCookie(name) {
 async function checkout(event) {
     event.preventDefault();
 
+    // Create a new spinner element and style it
+    var spinner = document.createElement('div');
+    spinner.id = 'loading-spinner';
+    spinner.style.position = 'fixed';
+    spinner.style.zIndex = '1000';
+    spinner.style.width = '100%';
+    spinner.style.height = '100%';
+    spinner.style.top = '0';
+    spinner.style.left = '0';
+    spinner.style.background = 'rgba(0,0,0,0.5)';
+    spinner.style.display = 'flex';
+    spinner.style.justifyContent = 'center';
+    spinner.style.alignItems = 'center';
+    spinner.innerHTML = '<img src="loading.gif" alt="Loading...">';
+
+    // Append the spinner to the body
+    document.body.appendChild(spinner);
+
     // Get the uuid from the cookie
     const uuid = getCookie('uuid');
     console.log('UUID:', uuid);
@@ -45,6 +63,9 @@ async function checkout(event) {
         return stripe.redirectToCheckout({ sessionId: session.sessionId });
     })
     .then(function(result) {
+        // Remove the spinner from the body
+        document.body.removeChild(spinner);
+
         console.log('Stripe result:', result);
         if (result.error) {
             console.error('Stripe error:', result.error.message);
@@ -52,9 +73,13 @@ async function checkout(event) {
         }
     })
     .catch(function(error) {
+        // Remove the spinner from the body
+        document.body.removeChild(spinner);
+
         console.error('Error:', error);
     });
 }
+
 
 document.addEventListener('DOMContentLoaded', function() {
     var buttons = document.querySelectorAll('#checkout-btn');
