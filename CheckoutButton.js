@@ -47,7 +47,7 @@ async function checkout(event) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    var buttons = document.querySelectorAll('.checkout-btn');
+    var buttons = document.querySelectorAll('#checkout-btn');
     buttons.forEach(function(button) {
         button.addEventListener('click', checkout);
     });
