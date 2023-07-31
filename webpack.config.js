@@ -2,8 +2,8 @@ const path = require('path');
 
 module.exports = {
     entry: {
-      checkoutButton: 'CheckoutButton.js',
-      sessionNav: 'session_nav.js'
+      checkoutButton: './CheckoutButton.js', // notice the './'
+      sessionNav: './session_nav.js' // notice the './'
     },
     output: {
       filename: '[name].bundle.js',
@@ -22,6 +22,6 @@ module.exports = {
           }
         }
       ]
-    }
-  }
-  
+    },
+    mode: 'development' // you can also set this to 'production' when you're ready to deploy
+}
