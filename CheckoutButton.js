@@ -27,6 +27,7 @@ async function checkout(event) {
     // Make a request to your server to create a Checkout Session
     fetch('https://payments.wunderstood.com/create-checkout-session', {
         method: 'POST',
+        credentials: 'include', // includes credentials in the request
         headers: {
             'Content-Type': 'application/json',
         },
