@@ -1,75 +1,84 @@
+// Import the Auth0 SPA SDK
+import createAuth0Client from '@auth0/auth0-spa-js';
+
 // Stripe instance
-var stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx'); // Your Stripe publishable key
+var stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx'); 
 
-// Function to fetch the user's session data from the server
-async function fetchUserSession() {
-    try {
-        const response = await fetch('https://auth.wunderstood.com/profile', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            credentials: 'include', // Include credentials in the request
-        });
+// Function to initialize Auth0 client
+let auth0Client;
 
-        if (!response.ok) {
-            throw new Error('Failed to fetch user session');
-        }
+async function initializeAuth0() {
+    auth0Client = await createAuth0Client({
+        domain: 'YOUR_AUTH0_DOMAIN',
+        client_id: 'YOUR_AUTH0_CLIENT_ID',
+        redirect_uri: 'http://localhost:3000',
+    });
 
-        const userSession = await response.json();
-        console.log('User session:', userSession);
-        return userSession;
-    } catch (error) {
-        console.error('Error fetching user session:', error);
-        return null;
+    if (window.location.search.includes('code=') && window.location.search.includes('state=')) {
+        await auth0Client.handleRedirectCallback();
+        window.history.replaceState({}, document.title, "/");
+    }
+
+    if (await auth0Client.isAuthenticated()) {
+        const user = await auth0Client.getUser();
+        console.log("User: ", user);
+    } else {
+        await auth0Client.loginWithRedirect({});
     }
 }
 
+window.onload = initializeAuth0;
+
 async function checkout(event) {
     event.preventDefault();
-    
-    // Fetch the user session from the server
-    const userSession = await fetchUserSession();
-    
-    if (!userSession || !userSession.sessionId) {
-      console.error('No user session found');
-      return;
+
+    if (!auth0Client) {
+        console.error('Auth0 client is not initialized');
+        return;
     }
-  
+
+    const user = await auth0Client.getUser();
+    if (!user) {
+        console.error('No user logged in');
+        return;
+    }
+
     var productId = event.target.dataset.productId; 
     console.log('Product ID:', productId);
-    console.log('Session ID:', userSession.sessionId);
-  
+
+    const accessToken = await auth0Client.getTokenSilently();
+
     // On button click, make a request to your server to create a Checkout Session
     fetch('https://payments.wunderstood.com/create-checkout-session', {
-      method: 'POST',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        productId: productId, // Use the provided product ID
-        sessionId: userSession.sessionId // The session ID fetched from the server
-      })
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+        },
+        body: JSON.stringify({
+            productId: productId,
+            userId: user.sub
+        })
     })
     .then(function(response) {
-      return response.json();
+        return response.json();
     })
     .then(function(session) {
-      return stripe.redirectToCheckout({ sessionId: session.sessionId });
+        return stripe.redirectToCheckout({ sessionId: session.id });
     })
     .then(function(result) {
-      if (result.error) {
-        // If redirectToCheckout fails due to a browser or network
-        // error, display the localized error message to your customer.
-        alert(result.error.message);
-      }
+        if (result.error) {
+            alert(result.error.message);
+        }
     })
     .catch(function(error) {
-      console.error('Error:', error);
+        console.error('Error:', error);
     });
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  document.querySelector('#checkout-btn').addEventListener('click', checkout);
+    var buttons = document.querySelectorAll('.checkout-btn');
+    buttons.forEach(function(button) {
+        button.addEventListener('click', checkout);
+    });
 });
