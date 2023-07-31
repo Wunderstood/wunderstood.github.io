@@ -42,7 +42,7 @@ async function checkout(event) {
     })
     .then(function(session) {
         console.log('Checkout session:', session);
-        return stripe.redirectToCheckout({ sessionId: session.id });
+        return stripe.redirectToCheckout({ sessionId: session.sessionId });
     })
     .then(function(result) {
         console.log('Stripe result:', result);
