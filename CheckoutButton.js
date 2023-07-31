@@ -1,63 +1,29 @@
-// Import the Auth0 SPA SDK
-import createAuth0Client from '@auth0/auth0-spa-js';
+// Import js-cookie library
+import Cookies from 'js-cookie';
 
 // Stripe instance
 var stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx'); 
 
-// Function to initialize Auth0 client
-let auth0Client;
-
-async function initializeAuth0() {
-    auth0Client = await createAuth0Client({
-        domain: 'YOUR_AUTH0_DOMAIN',
-        client_id: 'YOUR_AUTH0_CLIENT_ID',
-        redirect_uri: 'http://localhost:3000',
-    });
-
-    if (window.location.search.includes('code=') && window.location.search.includes('state=')) {
-        await auth0Client.handleRedirectCallback();
-        window.history.replaceState({}, document.title, "/");
-    }
-
-    if (await auth0Client.isAuthenticated()) {
-        const user = await auth0Client.getUser();
-        console.log("User: ", user);
-    } else {
-        await auth0Client.loginWithRedirect({});
-    }
-}
-
-window.onload = initializeAuth0;
-
 async function checkout(event) {
     event.preventDefault();
 
-    if (!auth0Client) {
-        console.error('Auth0 client is not initialized');
-        return;
-    }
+    // Get the uuid from the cookie
+    const uuid = Cookies.get('uuid');
 
-    const user = await auth0Client.getUser();
-    if (!user) {
-        console.error('No user logged in');
-        return;
-    }
+    // Fetch the product ID from the clicked button's data attribute
+    const productId = event.target.dataset.productId; 
 
-    var productId = event.target.dataset.productId; 
     console.log('Product ID:', productId);
 
-    const accessToken = await auth0Client.getTokenSilently();
-
-    // On button click, make a request to your server to create a Checkout Session
+    // Make a request to your server to create a Checkout Session
     fetch('https://payments.wunderstood.com/create-checkout-session', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${accessToken}`
         },
         body: JSON.stringify({
             productId: productId,
-            userId: user.sub
+            uuid: uuid   // Include the uuid in the request body
         })
     })
     .then(function(response) {
