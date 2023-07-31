@@ -1,14 +1,23 @@
-// Import js-cookie library
-const Cookies = require('js-cookie');
-
 // Stripe instance
 var stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx'); 
+
+// Function to get cookie by name
+function getCookie(name) {
+  let cookieArr = document.cookie.split("; ");
+  for(let i = 0; i < cookieArr.length; i++) {
+    let cookiePair = cookieArr[i].split("=");
+    if (name == cookiePair[0]) {
+      return decodeURIComponent(cookiePair[1]);
+    }
+  }
+  return null;
+}
 
 async function checkout(event) {
     event.preventDefault();
 
     // Get the uuid from the cookie
-    const uuid = Cookies.get('uuid');
+    const uuid = getCookie('uuid');
     console.log('UUID:', uuid);
 
     // Fetch the product ID from the clicked button's data attribute
