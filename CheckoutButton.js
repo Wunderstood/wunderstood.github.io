@@ -1,5 +1,5 @@
 // Import js-cookie library
-import Cookies from 'js-cookie';
+const Cookies = require('js-cookie');
 
 // Stripe instance
 var stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx'); 
