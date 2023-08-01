@@ -35,14 +35,19 @@ async function updateNavbar() {
     const sessionId = getCookie('sessionID');
     const uuid = getCookie('uuid');
     const proflag = getCookie('pro');
+    const reportBalance = getCookie('reportBalance');
+    const summaryBalance = getCookie('summaryBalance');
+    
   
     // Check if the required cookies exist
-    if (!sessionId || !uuid || !proflag) {
+    if (!sessionId || !uuid || !proflag || !reportBalance || !summaryBalance) {
         const userSession = await fetchUserSession();
         if (userSession && userSession.sessionId) {
-            // Set cookies for uuid, proflag and sessionId
+            // Set cookies for uuid, proflag, credit balances and sessionId
             document.cookie = `uuid=${userSession.uuid};path=/;max-age=${24 * 60 * 60}`;
             document.cookie = `pro=${userSession.pro};path=/;max-age=${24 * 60 * 60}`;
+            document.cookie = `reportBalance=${userSession.reportBalance};path=/;max-age=${24 * 60 * 60}`;
+            document.cookie = `summaryBalance=${userSession.summaryBalance};path=/;max-age=${24 * 60 * 60}`;
             document.cookie = `sessionID=${userSession.sessionId};path=/;max-age=${24 * 60 * 60}`;
             loginLink.textContent = 'Dashboard';
             loginLink.href = 'https://wunderstood.com/Dashboard';
