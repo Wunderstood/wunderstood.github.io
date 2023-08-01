@@ -34,15 +34,15 @@ async function updateNavbar() {
     const loginLink = document.querySelector('a[href="https://auth.wunderstood.com/login"]');
     const sessionId = getCookie('sessionID');
     const uuid = getCookie('uuid');
-    const membertype = getCookie('membertype');
+    const proflag = getCookie('pro');
   
     // Check if the required cookies exist
-    if (!sessionId || !uuid || !membertype) {
+    if (!sessionId || !uuid || !proflag) {
         const userSession = await fetchUserSession();
         if (userSession && userSession.sessionId) {
-            // Set cookies for uuid, membertype and sessionId
+            // Set cookies for uuid, proflag and sessionId
             document.cookie = `uuid=${userSession.uuid};path=/;max-age=${24 * 60 * 60}`;
-            document.cookie = `membertype=${userSession.membertype};path=/;max-age=${24 * 60 * 60}`;
+            document.cookie = `pro=${userSession.pro};path=/;max-age=${24 * 60 * 60}`;
             document.cookie = `sessionID=${userSession.sessionId};path=/;max-age=${24 * 60 * 60}`;
             loginLink.textContent = 'Dashboard';
             loginLink.href = 'https://wunderstood.com/Dashboard';
