@@ -29,7 +29,7 @@ async function checkout(event) {
     spinner.style.display = 'flex';
     spinner.style.justifyContent = 'center';
     spinner.style.alignItems = 'center';
-    spinner.innerHTML = '<img src="loading.gif" alt="Loading...">';
+    spinner.innerHTML = '<img src= "images/StripeCheckoutNav.png" alt=""><br><img src="files/loading.gif" alt="Loading...">';
 
     // Append the spinner to the body
     document.body.appendChild(spinner);
