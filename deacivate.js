@@ -1,4 +1,4 @@
-document.getElementById('#logoutButton').addEventListener('click', function() {
+document.getElementById('deactivateButton').addEventListener('click', function() {
     // Deleting cookies
     document.cookie = 'uuid=; Max-Age=0; path=/; domain=wunderstood.com';
     document.cookie = 'pro=; Max-Age=0; path=/; domain=wunderstood.com';
@@ -7,5 +7,5 @@ document.getElementById('#logoutButton').addEventListener('click', function() {
     document.cookie = 'sessionId=; Max-Age=0; path=/; domain=wunderstood.com';
 
     // Redirecting to wunderstood.com home page
-    window.location.href = "https://auth.wunderstood.com/logout";
+    window.location.href = "https://wunderstood.com";
 });
