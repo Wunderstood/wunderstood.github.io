@@ -11,7 +11,9 @@
     <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
     <meta name="generator" content="Nicepage 5.14.0, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
-    
+    <script src="logout.js"></script>
+    <script src="Dashboard.js"></script>
+
     
     
     <script type="application/ld+json">{
@@ -72,6 +74,8 @@
                       <div class="u-container-style u-list-item u-repeater-item">
                         <div class="u-container-layout u-similar-container u-valign-top u-container-layout-2">
                           <p class="u-text u-text-default u-text-3">Plan Type:</p>
+                          <br>
+                          <p> Pro User : </p><p id="pro-element"></p>
                         </div>
                       </div>
                       <div class="u-container-style u-list-item u-repeater-item">
@@ -82,6 +86,10 @@
                       <div class="u-container-style u-list-item u-repeater-item">
                         <div class="u-container-layout u-similar-container u-valign-top u-container-layout-4">
                           <p class="u-text u-text-default u-text-5">Your Balance:</p>
+                          <br>
+                          <p>Summary Balance : </p><p id="summaryBalance-element"></p>
+                          <br>
+                          <p>Report Balance : </p><p id="reportBalance-element"></p>
                         </div>
                       </div>
                       <div class="u-container-style u-list-item u-repeater-item">
@@ -102,7 +110,9 @@
                     <div class="u-repeater u-repeater-2">
                       <div class="u-container-style u-list-item u-repeater-item">
                         <div class="u-container-layout u-similar-container u-valign-top u-container-layout-7">
-                          <p class="u-text u-text-default u-text-9">Email:</p>
+                          <p class="u-text u-text-default u-text-9">Unique User ID:</p>
+                          <br>
+                          <p id="uuid-element"></p>
                         </div>
                       </div>
                       <div class="u-container-style u-list-item u-repeater-item">
@@ -113,6 +123,8 @@
                       <div class="u-container-style u-list-item u-repeater-item">
                         <div class="u-container-layout u-similar-container u-valign-top u-container-layout-9">
                           <p class="u-text u-text-default u-text-11">Username:</p>
+                          <br>
+                          <p id="username-element"></p>
                         </div>
                       </div>
                       <div class="u-container-style u-list-item u-repeater-item">
@@ -122,7 +134,7 @@
                       </div>
                     </div>
                   </div>
-                  <a href="https://auth.wunderstood.com/logout" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-6 u-radius-50 u-btn-2">Log Out</a>
+                  <button id="logoutButton" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-6 u-radius-50 u-btn-2">Log Out</button>
                   <a href="#" class="u-btn u-button-style u-text-custom-color-8 u-btn-3">Delete Account</a>
                 </div>
               </div>

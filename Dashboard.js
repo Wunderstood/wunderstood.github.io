@@ -23,35 +23,40 @@ async function fetchUserSession() {
         console.log('User session:', userSession);
         return userSession;
     } catch (error) {
-        document.cookie.split(";").forEach((c) => {
-            document.cookie = c
-                .replace(/^ +/, "")
-                .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
-        });
+        //navigate user to home page
+
         return null;
     }
 }
 
 // Function to update the navbar based on user's login status
 async function updateDashboard() {
-    console.log("updating nav bar...");
     const loginLink = document.querySelector('a[href="https://auth.wunderstood.com/login"]');
     const userSession = await fetchUserSession();
     
     if (userSession && userSession.sessionId) {
-        // Set cookies for uuid, proflag, credit balances and sessionId
+        // Set cookies for uuid, proflag, credit balances, sessionId and username
         document.cookie = `uuid=${userSession.uuid};path=/;max-age=${24 * 60 * 60}`;
         document.cookie = `pro=${userSession.pro};path=/;max-age=${24 * 60 * 60}`;
         document.cookie = `reportBalance=${userSession.reportBalance};path=/;max-age=${24 * 60 * 60}`;
         document.cookie = `summaryBalance=${userSession.summaryBalance};path=/;max-age=${24 * 60 * 60}`;
         document.cookie = `sessionID=${userSession.sessionId};path=/;max-age=${24 * 60 * 60}`;
+        document.cookie = `username=${userSession.username};path=/;max-age=${24 * 60 * 60}`; // New cookie for the username
         loginLink.textContent = 'Dashboard';
         loginLink.href = 'https://wunderstood.com/Dashboard';
+
+        // Insert fetched data into HTML elements
+        document.getElementById('username-element').innerText = userSession.username;
+        document.getElementById('summaryBalance-element').innerText = userSession.summaryBalance;
+        document.getElementById('reportBalance-element').innerText = userSession.reportBalance;
+        document.getElementById('pro-element').innerText = userSession.pro;
+        document.getElementById('uuid-element').innerText = userSession.uuid;
     } else {
         loginLink.textContent = 'Login';
         loginLink.href = 'https://auth.wunderstood.com/login';
     }
 }
+
 
 // Update the navbar when the page has loaded
 window.addEventListener('load', updateDashboard);
