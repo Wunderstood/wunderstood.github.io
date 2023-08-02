@@ -1,4 +1,4 @@
-document.getElementById('#logoutButton').addEventListener('click', function() {
+document.getElementById('logoutButton').addEventListener('click', function() {
     // Deleting cookies
     document.cookie = 'uuid=; Max-Age=0; path=/; domain=wunderstood.com';
     document.cookie = 'pro=; Max-Age=0; path=/; domain=wunderstood.com';
