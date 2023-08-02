@@ -5,7 +5,7 @@ function getCookie(name) {
 }
 
 function generateMailtoLink(uuid) {
-    let email = "info@wunderstood.com";
+    let email = "support@wunderstood.com";
     let subject = encodeURIComponent(uuid + " Account Deletion Requested");
     let emailBody = "Please delete my account. My UUID is: " + uuid;
     let mailtoLink = `mailto:${email}?subject=${subject}&body=${emailBody}`;
