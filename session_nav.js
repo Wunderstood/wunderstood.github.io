@@ -32,32 +32,20 @@ async function fetchUserSession() {
 async function updateNavbar() {
     console.log("updating nav bar...");
     const loginLink = document.querySelector('a[href="https://auth.wunderstood.com/login"]');
-    const sessionId = getCookie('sessionID');
-    const uuid = getCookie('uuid');
-    const proflag = getCookie('pro');
-    const reportBalance = getCookie('reportBalance');
-    const summaryBalance = getCookie('summaryBalance');
+    const userSession = await fetchUserSession();
     
-  
-    // Check if the required cookies exist
-    if (!sessionId || !uuid || !proflag || !reportBalance || !summaryBalance) {
-        const userSession = await fetchUserSession();
-        if (userSession && userSession.sessionId) {
-            // Set cookies for uuid, proflag, credit balances and sessionId
-            document.cookie = `uuid=${userSession.uuid};path=/;max-age=${24 * 60 * 60}`;
-            document.cookie = `pro=${userSession.pro};path=/;max-age=${24 * 60 * 60}`;
-            document.cookie = `reportBalance=${userSession.reportBalance};path=/;max-age=${24 * 60 * 60}`;
-            document.cookie = `summaryBalance=${userSession.summaryBalance};path=/;max-age=${24 * 60 * 60}`;
-            document.cookie = `sessionID=${userSession.sessionId};path=/;max-age=${24 * 60 * 60}`;
-            loginLink.textContent = 'Dashboard';
-            loginLink.href = 'https://wunderstood.com/Dashboard';
-        } else {
-            loginLink.textContent = 'Login';
-            loginLink.href = 'https://auth.wunderstood.com/login';
-        }
-    } else {
+    if (userSession && userSession.sessionId) {
+        // Set cookies for uuid, proflag, credit balances and sessionId
+        document.cookie = `uuid=${userSession.uuid};path=/;max-age=${24 * 60 * 60}`;
+        document.cookie = `pro=${userSession.pro};path=/;max-age=${24 * 60 * 60}`;
+        document.cookie = `reportBalance=${userSession.reportBalance};path=/;max-age=${24 * 60 * 60}`;
+        document.cookie = `summaryBalance=${userSession.summaryBalance};path=/;max-age=${24 * 60 * 60}`;
+        document.cookie = `sessionID=${userSession.sessionId};path=/;max-age=${24 * 60 * 60}`;
         loginLink.textContent = 'Dashboard';
         loginLink.href = 'https://wunderstood.com/Dashboard';
+    } else {
+        loginLink.textContent = 'Login';
+        loginLink.href = 'https://auth.wunderstood.com/login';
     }
 }
 
