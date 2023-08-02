@@ -42,8 +42,7 @@ async function updateDashboard() {
         document.cookie = `summaryBalance=${userSession.summaryBalance};path=/;max-age=${24 * 60 * 60}`;
         document.cookie = `sessionID=${userSession.sessionId};path=/;max-age=${24 * 60 * 60}`;
         document.cookie = `username=${userSession.username};path=/;max-age=${24 * 60 * 60}`; // New cookie for the username
-        loginLink.textContent = 'Dashboard';
-        loginLink.href = 'https://wunderstood.com/Dashboard';
+
 
         // Insert fetched data into HTML elements
         document.getElementById('username-element').innerText = userSession.username;
@@ -53,7 +52,7 @@ async function updateDashboard() {
         document.getElementById('uuid-element').innerText = userSession.uuid;
     } else {
         loginLink.textContent = 'Login';
-        loginLink.href = 'https://auth.wunderstood.com/login';
+        loginLink.href = 'https://wunderstood.com';
     }
 }
 
