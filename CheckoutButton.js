@@ -1,5 +1,5 @@
 // Stripe instance
-var stripe = Stripe('pk_test_51NYO3sCrnQSygLy6qcWk0Iy7uVhmwxzPG35y6LVaZA9AFQZro6pjHi4ILPJmWRbL1XvYPz6mgkW0E7PK0z6lXzpa003YXgSZwv');
+var stripe = Stripe('pk_live_51NYO3sCrnQSygLy6Ei4SZIYeacRjgcSu8H20vvNV6zuBpBaLvv1lt4l2gZ3OMVgaOS87vE3xKjHcg5vRIhWV263j00C6yiJYYU');
 
 // Function to get cookie by name
 function getCookie(name) {
