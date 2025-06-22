@@ -1,0 +1,133 @@
+body {
+    font-family: Open Sans, Arial, sans-serif;
+    background-color: #11385E;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .black-banner {
+    background-color: #000000;
+  }
+ 
+ 
+  .banner {
+    padding: 10px 0;
+  }
+  
+  .icon-link {
+    display: inline-block;
+    margin-right: 10px;
+    margin-top: 0px;
+    vertical-align: middle;
+    height: 50px;
+  }
+  
+  .icon-link img {
+    max-height: 70px;
+    height: auto;
+    margin-left: 30px;
+  }
+  
+  .understood-text {
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .button-group .btn {
+    color: #ffffff;
+    margin-right: 30px;
+    font-size: 20px;
+  }
+  .btn:hover {
+    color: #C8017D;
+  }
+  
+  
+  .button-group .btn-transparent {
+    background-color: transparent;
+    border: none;
+  }
+  
+  .text-center {
+    text-align: center; /* Center-align text */
+  }
+  
+  .video-section {
+    padding: 20px;
+    background-color: #ffffff;
+  }
+  
+  .video-section h2 {
+    margin-bottom: 30px;
+  }
+  
+  .bold-white-text {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 50px; 
+  }
+  
+  /* Updated btn-pill-custom class */
+  .btn-pill-custom {
+    display: inline-block;
+    border: 2px solid #0BFFF7; /* Set button border to white */
+    background-color: transparent; /* Make button background transparent */
+    color: #ffffff; /* Set button text to white */
+    font-weight: bold; /* Make button text bold */
+    border-radius: 50px;
+    overflow: hidden;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px 20px; /* Optional padding to adjust button size */
+  }
+  /* Change text color to #C8017D when hovering over any button with the btn class */
+  .btn-pill-custom:hover {
+    color: #C8017D;
+  }
+  
+  .ai-researcher-text {
+    color: #C8017D;
+  }
+  
+  .btn-pill-custom .button-img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .black-banner .container {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .container-below-nav {
+    margin-top: 20px; /* Adjust the margin to shift everything down */
+  }
+  
+  /* Custom class for the smaller video */
+  .col-md-8 {
+    max-width: 100%; /* Set video width to 100% on small screens */
+  }
+  
+  /* Center the video on small screens */
+  @media (max-width: 767px) {
+    .col-md-8 {
+      margin: 0 auto;
+    }
+  }
+  
+  /* Optionally, you can center the video on larger screens by adding margin to the row */
+  @media (min-width: 992px) {
+    .row.justify-content-center {
+      margin: 0 auto;
+    }
+  }
+  
+  /* Style for the button icon */
+  .button-icon {
+    height: 20px; /* Set the desired height of the icon */
+    margin-right: 5px; /* Add spacing between the icon and text */
+  }
+  
+  /* ... Other CSS styles ... */
+  
