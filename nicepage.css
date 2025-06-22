@@ -43088,26 +43088,44 @@ a.u-link.u-text-hover-grey-90:hover {
 }
 @media (max-width: 1199px) {
   .u-header .u-image-1 {
-    margin-left: calc(((100% - 940px) / 2) + -104px);
+    height: 63px;
+    margin-top: 24px;
+    margin-left: calc(((100% - 940px) / 2) + -30px);
   }
 
   .u-header .u-menu-1 {
     width: auto;
+    margin-top: -49px;
   }
 }
 @media (max-width: 991px) {
   .u-header .u-image-1 {
-    margin-left: calc(((100% - 720px) / 2) + -104px);
+    margin-left: calc(((100% - 720px) / 2) + -30px);
+  }
+
+  .u-header .u-menu-1 {
+    margin-top: -47px;
+    margin-right: calc(((100% - 720px) / 2) + -24px);
+    margin-bottom: 41px;
   }
 }
 @media (max-width: 767px) {
   .u-header .u-image-1 {
-    margin-left: calc(((100% - 540px) / 2) + -104px);
+    margin-left: calc(((100% - 540px) / 2) + -30px);
+  }
+
+  .u-header .u-menu-1 {
+    margin-top: -47px;
+    margin-right: calc(((100% - 540px) / 2) + -24px);
   }
 }
 @media (max-width: 575px) {
   .u-header .u-image-1 {
-    margin-left: calc(((100% - 340px) / 2) + -104px);
+    margin-left: calc(((100% - 340px) / 2) + -30px);
+  }
+
+  .u-header .u-menu-1 {
+    margin-right: calc(((100% - 340px) / 2) + -24px);
   }
 }
  .u-footer {
